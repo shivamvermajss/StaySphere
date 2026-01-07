@@ -48,6 +48,45 @@
 </div>
 <% } %>
 
+<% if (currUser && !currUser._id.equals(listing.owner._id)) { %>
+<div class="row mt-4">
+    <div class="col-6 offset-3">
+        <div class="card p-3">
+            <h5 class="mb-3">Book this place</h5>
+
+            <form action="/listings/<%= listing._id %>/book" method="POST">
+                <div class="mb-2">
+                    <label class="form-label">Check In</label>
+                    <input type="date" name="checkIn" class="form-control" required>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Check Out</label>
+                    <input type="date" name="checkOut" class="form-control" required>
+                </div>
+
+                <button class="btn btn-success w-100 mt-2">
+                    Reserve
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<% } %>
+
+<% if (!currUser) { %>
+<div class="row mt-4">
+    <div class="col-6 offset-3 text-center">
+        <a href="/login" class="btn btn-outline-primary">
+            Login to Book
+        </a>
+    </div>
+</div>
+<% } %>
+
+
+
+
 <div class="col-8 offset-3 mb-3">
     
 

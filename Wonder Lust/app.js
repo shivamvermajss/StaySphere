@@ -17,6 +17,7 @@ const Review = require( "./models/review.js");
 const listings = require( "./routes/listing.js");
 const reviews = require( "./routes/review.js");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport= require("passport");
 const LocalStrategy= require("passport-local");
@@ -24,6 +25,9 @@ const User= require( "./models/user.js");
 const listingRouter= require( "./routes/listing.js");
 const reviewRouter= require( "./routes/review.js");
 const userRouter= require( "./routes/user.js");
+const bookingRoutes = require("./routes/booking");
+
+const dbUrl = process.env.ATLASDB_URL;
 
 
 
@@ -35,7 +39,7 @@ main().then(()=>{
 });
 
 async function main(){
-    await mongoose.connect('mongodb://127.0.0.1:27017/StaySphere')
+    await mongoose.connect(dbUrl);
 } 
 app.set( "view engine", "ejs");
 app.set( "views", path.join(__dirname, "views"));
@@ -45,8 +49,21 @@ app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname ,"/public")));
 
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 60 * 60,
+});
+
+store.on("error",()=>{
+    console.log("session store error",err);
+});
+
 const sessionOptions= {
-    secret: "mysupersecretcode",
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -57,11 +74,6 @@ const sessionOptions= {
 }; 
 
 
-
-
-// app.get("/", (req,res)=>{
-//     res.send( " hi i am root ");
-// });
 
 
 
@@ -88,18 +100,10 @@ app.use((req,res,next)=>{
     next();
 });
 
-// app.get("/demouser", async(req,res)=>{
-//     let fakeUser= new User({
-//         username: "shivam",
-//         email: "student@gmail.com"
-//     });
-    
-//     let registeredUser = await User.register(fakeUser, "hello123");
-//     res.send(registeredUser); 
-// });    
 
 
 
+app.use("/", bookingRoutes);
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);

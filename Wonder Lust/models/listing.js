@@ -39,6 +39,13 @@ const listingSchema = new Schema({
       required: true,
     },
   },
+  bookings: [
+  {
+    type: Schema.Types.ObjectId,
+    ref: "Booking"
+  }
+]
+
 });
 
 
@@ -60,3 +67,4 @@ listingSchema.post("findOneAndDelete", async (listing)=> {
      
 const listing = mongoose.model("listing", listingSchema);
 module.exports= listing;
+module.exports = mongoose.model("Listing", listingSchema);
