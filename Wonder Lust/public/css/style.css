@@ -98,7 +98,6 @@ body{
 .listing-link{
     text-decoration: none;
 }
-/* card effect*/
 
 .card-img-overlay{
     opacity: 0;
@@ -180,6 +179,57 @@ body{
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 2px;
+}
+
+
+#filters {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: #222;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.filter i {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+  color: #222;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.filter p {
+  font-size: 0.85rem;
+  margin: 0;
+  color: #222;
+  font-weight: 500;
+}
+
+.filter:hover {
+  color: #000;
+}
+
+.filter:hover i {
+  color: #000;
+  transform: scale(1.15);
+}
+
+.filter:hover p {
+  color: #000;
+}
+
+.filter a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .price {
@@ -294,4 +344,11 @@ body{
     }
 }
 
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
   
