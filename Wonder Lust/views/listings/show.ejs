@@ -1,16 +1,15 @@
-<% layout("/layouts/boilerplate")%>
+<% layout("/layouts/boilerplate") %>
 
 <script>
     const mapToken = "<%= mapToken %>";
     const coordinates = <%- JSON.stringify(
         listing.geometry && listing.geometry.coordinates
             ? listing.geometry.coordinates
-            : [78.9629, 20.5937]   // fallback (India)
+            : [78.9629, 20.5937]
     ) %>;
 </script>
 
 <div class="row mt-3">
-
     <div class="col-8 offset-3">
         <h3><%= listing.title %></h3>
     </div>
@@ -24,8 +23,7 @@
 
             <p class="listing-card-text">
                 <b>Cost:</b>
-                &#8377;
-                <%= listing.price != null ? Number(listing.price).toLocaleString("en-IN") : "N/A" %>
+                ₹ <%= listing.price != null ? Number(listing.price).toLocaleString("en-IN") : "N/A" %>
             </p>
 
             <p class="card-text"><%= listing.location %></p>
@@ -36,7 +34,7 @@
 
 <br>
 
-<% if(currUser && currUser._id.equals(listing.owner._id)) { %>
+<% if (currUser && currUser._id.equals(listing.owner._id)) { %>
 <div class="btns col-6 offset-3 mt-3">
     <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn">Edit</a>
 
@@ -46,33 +44,55 @@
 </div>
 <% } %>
 
-<div class="col-8 offset-3 mb-3">
+<% if (currUser && currUser._id.toString() !== listing.owner._id.toString()) { %>
+<div class="row mt-4">
+    <div class="col-6 offset-3">
+        <div class="card p-3 shadow-sm">
+            <h5 class="mb-3">Book this place</h5>
 
-    <% if(currUser) { %>
+            <form action="/listings/<%= listing._id %>/book" method="POST">
+                <div class="mb-2">
+                    <label class="form-label">Check In</label>
+                    <input type="date" name="checkIn" class="form-control" required>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Check Out</label>
+                    <input type="date" name="checkOut" class="form-control" required>
+                </div>
+
+                <button class="btn btn-success w-100 mt-2">
+                    Reserve
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<% } %>
+
+<div class="col-8 offset-3 mb-3">
+    <% if (currUser) { %>
     <hr>
     <h4>Leave a Review</h4>
 
     <form action="/listings/<%= listing._id %>/reviews" method="POST">
-
         <div class="mb-3 mt-3">
             <label class="form-label">Rating</label>
-
-            <!-- ✅ FIXED STAR RATING -->
             <fieldset class="starability-slot">
                 <input type="radio" id="rate1" name="review[rating]" value="1" required />
-                <label for="rate1" title="Terrible">1 star</label>
+                <label for="rate1">1 star</label>
 
                 <input type="radio" id="rate2" name="review[rating]" value="2" />
-                <label for="rate2" title="Not good">2 stars</label>
+                <label for="rate2">2 stars</label>
 
                 <input type="radio" id="rate3" name="review[rating]" value="3" />
-                <label for="rate3" title="Average">3 stars</label>
+                <label for="rate3">3 stars</label>
 
                 <input type="radio" id="rate4" name="review[rating]" value="4" />
-                <label for="rate4" title="Very good">4 stars</label>
+                <label for="rate4">4 stars</label>
 
                 <input type="radio" id="rate5" name="review[rating]" value="5" />
-                <label for="rate5" title="Amazing">5 stars</label>
+                <label for="rate5">5 stars</label>
             </fieldset>
         </div>
 
@@ -87,11 +107,11 @@
 
     <hr>
 
-    <% if(listing.reviews.length > 0){ %>
+    <% if (listing.reviews.length > 0) { %>
     <div class="row">
         <p><b>All Reviews</b></p>
 
-        <% for(let review of listing.reviews){ %>
+        <% for (let review of listing.reviews) { %>
         <div class="card col-5 mb-3 ms-3">
             <div class="card-body">
                 <h5 class="card-title"><%= review.author.username %></h5>
