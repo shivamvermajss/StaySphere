@@ -1,75 +1,150 @@
-A Full-Stack Airbnb-like Web Application
+🏡 StaySphere – Full Stack Booking Platform
 
-StaySphere is a full-stack web application inspired by Airbnb that allows users to create, browse, review, and manage property listings. It includes user authentication, authorization, reviews, and secure CRUD operations.
+A production-ready full-stack accommodation booking platform built with the MERN stack, featuring authentication, listings management, image uploads, and secure backend architecture.
 
-🚀 Features
-🔐 Authentication & Authorization
+🌐 Live Demo:
+👉 https://staysphere-yinn.onrender.com
 
-User Signup & Login using Passport.js
+🧠 Overview
 
-Secure password hashing
+StaySphere is a real-world full-stack web application inspired by modern booking platforms.
 
-Authorization for:
+Users can:
 
-Listing owners
+🔐 Sign up & log in securely
 
-Review authors
+🏠 Browse property listings
 
-🏠 Listings
+➕ Add new listings
 
-Create, edit, delete property listings
+✏️ Edit or delete listings
 
-View all listings with details
+⭐ Leave reviews
 
-Only owners can edit or delete their listings
+📷 Upload images via Cloudinary
 
-⭐ Reviews
+📱 Use the platform seamlessly across devices
 
-Add reviews with ratings (1–5 stars)
+This project demonstrates backend architecture, authentication flows, database relationships, and production deployment.
 
-View reviews with author details
+✨ Features
 
-Only review authors can delete their reviews
+🔑 User Authentication (Passport.js)
 
-⚙️ Other Features
+🏠 CRUD Operations for Listings
 
-Flash messages for success & error feedback
+⭐ Review & Rating System
 
-Server-side validation using Joi
+📷 Cloudinary Image Upload Integration
 
-RESTful routing
+🛡️ Secure Session Handling
 
-MVC architecture
+📦 RESTful Route Structure
 
-Clean UI using Bootstrap
+🎨 Server-Side Rendering with EJS
 
-🛠️ Tech Stack
-Frontend
+📱 Fully Responsive UI
 
-HTML
+🚀 Deployed on Render
 
-CSS
-
-Bootstrap
-
-EJS (Embedded JavaScript Templates)
-
-Backend
+🏗️ Tech Stack
+🖥️ Backend
 
 Node.js
 
 Express.js
 
-Database
-
 MongoDB
 
 Mongoose
 
-Authentication
+Passport.js (Authentication)
 
-Passport.js
+Cloudinary (Image Storage)
 
-passport-local
+🎨 Frontend
 
-passport-local-mongoose
+EJS
+
+Bootstrap
+
+CSS
+
+JavaScript
+
+🚀 Deployment
+
+Render (Backend Hosting)
+
+MongoDB Atlas (Cloud Database)
+
+Cloudinary (Image CDN)
+
+📂 Project Structure
+StaySphere/
+│
+├── models/
+├── routes/
+├── views/
+├── public/
+├── utils/
+├── schema.js
+├── app.js
+└── package.json
+⚙️ Installation & Setup
+1️⃣ Clone Repository
+git clone https://github.com/shivamvermajss/StaySphere.git
+cd StaySphere
+2️⃣ Install Dependencies
+npm install
+3️⃣ Add Environment Variables
+
+Create a .env file:
+
+MONGODB_URI=your_mongodb_connection
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_KEY=your_key
+CLOUDINARY_SECRET=your_secret
+SESSION_SECRET=your_session_secret
+4️⃣ Run Locally
+npm start
+📸 Screenshots (Add These Later)
+
+You can add:
+
+Home Page
+<img width="1898" height="905" alt="image" src="https://github.com/user-attachments/assets/889ee75d-d750-436c-a93f-9e33006e3827" />
+
+
+Listing Page
+<img width="1894" height="901" alt="image" src="https://github.com/user-attachments/assets/f2644835-2f04-4ce5-8558-197b25dd9d0e" />
+
+
+Add Listing Page
+<img width="1886" height="905" alt="image" src="https://github.com/user-attachments/assets/dc0a7198-296e-4c88-81de-6433f6ca0730" />
+
+
+
+
+🛡️ What This Project Demonstrates
+
+Real production backend architecture
+
+Authentication & authorization handling
+
+Database relationships (Listings ↔ Reviews ↔ Users)
+
+Secure file upload integration
+
+Deployment debugging & environment management
+
+Clean REST API design
+
+👨‍💻 Author
+
+Shivam Verma
+Final Year B.Tech CSE | Full Stack Developer
+
+🔗 GitHub: https://github.com/shivamvermajss
+
+🔗 LinkedIn: https://www.linkedin.com/in/shivam-verma-227b37384
